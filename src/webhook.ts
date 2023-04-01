@@ -6,9 +6,6 @@ import dayjs = require('dayjs')
 import utc = require('dayjs/plugin/utc')
 import tz = require('dayjs/plugin/timezone')
 
-dayjs.extend(utc)
-dayjs.extend(tz)
-
 try {
    require('dotenv').config()
 } catch (e) {
@@ -73,6 +70,10 @@ function convertGttDate(payload: string): string {
    const timezone = "Europe/Rome"
    const gttEpoch = 1104534000
    const hexRegexp = /[0-9A-Fa-f]{6}/g
+
+   dayjs.extend(utc)
+   dayjs.extend(tz)
+   dayjs.tz.setDefault(timezone)
 
    if (payload === 'info') return `${datePattern}\nor\n6 digits HEX number`
    if (payload === 'now') return `\`${Math.floor((dayjs().tz(timezone, true).unix() - gttEpoch) / 60).toString(16).toUpperCase()}\``

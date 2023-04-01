@@ -42,8 +42,6 @@ var mongodb_1 = require("mongodb");
 var dayjs = require("dayjs");
 var utc = require("dayjs/plugin/utc");
 var tz = require("dayjs/plugin/timezone");
-dayjs.extend(utc);
-dayjs.extend(tz);
 try {
     require('dotenv').config();
 }
@@ -160,9 +158,12 @@ function parseEntities(message, entities) {
 }
 function convertGttDate(payload) {
     var datePattern = 'YYYY\\-MM\\-DD HH:mm';
-    var timezone = "America/Toronto";
+    var timezone = "Europe/Rome";
     var gttEpoch = 1104534000;
     var hexRegexp = /[0-9A-Fa-f]{6}/g;
+    dayjs.extend(utc);
+    dayjs.extend(tz);
+    dayjs.tz.setDefault(timezone);
     if (payload === 'info')
         return "".concat(datePattern, "\nor\n6 digits HEX number");
     if (payload === 'now')
