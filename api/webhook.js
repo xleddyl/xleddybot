@@ -42,6 +42,9 @@ var mongodb_1 = require("mongodb");
 var dayjs = require("dayjs");
 var utc = require("dayjs/plugin/utc");
 var tz = require("dayjs/plugin/timezone");
+dayjs.extend(utc);
+dayjs.extend(tz);
+dayjs.tz.setDefault('Europe/Rome');
 try {
     require('dotenv').config();
 }
@@ -157,19 +160,15 @@ function parseEntities(message, entities) {
     });
 }
 function convertGttDate(payload) {
-    var datePattern = 'YYYY\\-MM\\-DD HH:mm';
-    var timezone = "Europe/Rome";
-    var gttEpoch = 1104534000;
+    var datePattern = 'YYYY-MM-DD HH:mm';
+    var gttEpoch = 1104534000; // seconds from unix epoch
     var hexRegexp = /[0-9A-Fa-f]{6}/g;
-    dayjs.extend(utc);
-    dayjs.extend(tz);
-    dayjs.tz.setDefault(timezone);
     if (payload === 'info')
         return "".concat(datePattern, "\nor\n6 digits HEX number");
     if (payload === 'now')
-        return "`".concat(Math.floor((dayjs().tz(timezone, true).unix() - gttEpoch) / 60).toString(16).toUpperCase(), "`");
+        return "`".concat(Math.floor((dayjs(dayjs.tz(undefined).format(datePattern), datePattern).unix() - gttEpoch) / 60).toString(16).toUpperCase(), "`");
     if (payload.match(hexRegexp))
-        return "`".concat(dayjs.unix((parseInt(payload, 16) * 60) + gttEpoch).format(datePattern), "`");
+        return "`".concat(dayjs.unix(parseInt(payload, 16) * 60 + gttEpoch).format(datePattern), "`");
     else
         return "`".concat(Math.floor((dayjs(payload, datePattern).unix() - gttEpoch) / 60).toString(16).toUpperCase(), "`");
 }

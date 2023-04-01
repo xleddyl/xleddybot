@@ -6,6 +6,10 @@ import dayjs = require('dayjs')
 import utc = require('dayjs/plugin/utc')
 import tz = require('dayjs/plugin/timezone')
 
+dayjs.extend(utc)
+dayjs.extend(tz)
+dayjs.tz.setDefault('Europe/Rome')
+
 try {
    require('dotenv').config()
 } catch (e) {
@@ -66,17 +70,12 @@ async function parseEntities(message: Types.Message, entities: Types.MessageEnti
 }
 
 function convertGttDate(payload: string): string {
-   const datePattern = 'YYYY\\-MM\\-DD HH:mm'
-   const timezone = "Europe/Rome"
-   const gttEpoch = 1104534000
+   const datePattern = 'YYYY-MM-DD HH:mm'
+   const gttEpoch = 1104534000 // seconds from unix epoch
    const hexRegexp = /[0-9A-Fa-f]{6}/g
 
-   dayjs.extend(utc)
-   dayjs.extend(tz)
-   dayjs.tz.setDefault(timezone)
-
    if (payload === 'info') return `${datePattern}\nor\n6 digits HEX number`
-   if (payload === 'now') return `\`${Math.floor((dayjs().tz(timezone, true).unix() - gttEpoch) / 60).toString(16).toUpperCase()}\``
-   if (payload.match(hexRegexp)) return `\`${dayjs.unix((parseInt(payload, 16) * 60) + gttEpoch).format(datePattern)}\``
+   if (payload === 'now') return `\`${Math.floor((dayjs(dayjs.tz(undefined).format(datePattern), datePattern).unix() - gttEpoch) / 60).toString(16).toUpperCase()}\``
+   if (payload.match(hexRegexp)) return `\`${dayjs.unix(parseInt(payload, 16) * 60 + gttEpoch).format(datePattern)}\``
    else return `\`${Math.floor((dayjs(payload, datePattern).unix() - gttEpoch) / 60).toString(16).toUpperCase()}\``
 }
