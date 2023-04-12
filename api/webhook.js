@@ -161,7 +161,7 @@ function parseEntities(message, entities) {
 }
 function convertGttDate(payload) {
     var datePattern = 'YYYY-MM-DD HH:mm';
-    var gttEpoch = 1104534000; // seconds from unix epoch
+    var gttEpoch = 1104526800;
     var hexRegexp = /[0-9A-Fa-f]{6}/g;
     if (payload === 'info')
         return "".concat(datePattern, "\nor\n6 digits HEX number");

@@ -71,7 +71,7 @@ async function parseEntities(message: Types.Message, entities: Types.MessageEnti
 
 function convertGttDate(payload: string): string {
    const datePattern = 'YYYY-MM-DD HH:mm'
-   const gttEpoch = 1104534000 // seconds from unix epoch
+   const gttEpoch = 1104526800
    const hexRegexp = /[0-9A-Fa-f]{6}/g
 
    if (payload === 'info') return `${datePattern}\nor\n6 digits HEX number`
