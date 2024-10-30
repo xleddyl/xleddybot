@@ -7,10 +7,10 @@
   resolved "https://registry.yarnpkg.com/@types/aws-lambda/-/aws-lambda-8.10.145.tgz#b2d31a987f4888e5553ff1819f57cafa475594d9"
   integrity sha512-dtByW6WiFk5W5Jfgz1VM+YPA21xMXTuSFoLYIDY0L44jDLLflVPtZkYuu3/YxpGcvjzKFBZLU+GyKjR0HOYtyw==
 
-"@xleddyl/telegen-ts@^3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@xleddyl/telegen-ts/-/telegen-ts-3.0.2.tgz#c195850d99ba79449bf09c873bcdc011d856b0e1"
-  integrity sha512-Oyn/lcSZZnnLIeOo6FyzBhxgEHZwjCYCrK1hy0WMN+434B3yV5CT3RuFwUjl+fzMPP4hCHpKO8jwPzevLxwIOw==
+"@xleddyl/telegen-ts@^3.0.3":
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/@xleddyl/telegen-ts/-/telegen-ts-3.0.3.tgz#cc99ff01052e9f86a0a46d6bf9c842985d5d0a47"
+  integrity sha512-XAusIFuINeepFEU8MZWx+I0jMkaU1idHI0z9RWj+8b4ykdAV9ujTVqFCZG/tQUmEF1uZXzmUZ4eOGGzwK7mdsA==
   dependencies:
     axios "^1.7.7"
     install "^0.13.0"
