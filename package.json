@@ -1,38 +1,24 @@
 {
-  "name": "xleddybot",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "ts-build": "tsc",
-    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
-    "dev": "npm run ts-build && node src/utils/localWebhook.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/xleddyl/xleddybot.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/xleddyl/xleddybot/issues"
-  },
-  "homepage": "https://github.com/xleddyl/xleddybot#readme",
-  "dependencies": {
-    "@xleddyl/telegen-ts": "^1.2.0",
-    "mongodb": "^5.0.0"
-  },
-  "devDependencies": {
-    "@types/node": "^18.11.19",
-    "axios": "^1.3.2",
-    "body-parser": "^1.20.1",
-    "dayjs": "^1.11.7",
-    "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "ngrok": "^4.3.3",
-    "prettier": "^2.8.3",
-    "ts-node": "^10.9.1",
-    "typescript": "^4.9.5"
-  }
+   "name": "xleddybot",
+   "version": "1.0.0",
+   "main": "index.js",
+   "repository": "git@github.com:xleddyl/xleddybot.git",
+   "author": "Edoardo Alberti <edoalberti99@gmail.com>",
+   "license": "MIT",
+   "scripts": {
+      "dev": "npx sst dev",
+      "delete": "npx sst remove",
+      "deploy": "npx sst deploy --stage production",
+      "ssog": "aws sts get-caller-identity",
+      "ssol": "aws sso login --sso-session xleddyl",
+      "ssoc": "aws configure sso"
+   },
+   "devDependencies": {
+      "sst": "^3.2.62"
+   },
+   "dependencies": {
+      "@types/aws-lambda": "^8.10.145",
+      "@xleddyl/telegen-ts": "^3.0.2",
+      "aws-lambda": "^1.0.7"
+   }
 }
