@@ -5,7 +5,7 @@ export const echo = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxy
    const bot = new TelegenTS({ token: process.env.BOT_TOKEN })
    const update: Types.Update = JSON.parse(event.body)
 
-   bot.sendMessage(
+   await bot.sendMessage(
       {
          chat_id: update.message.chat.id,
          text: update.message.text,
