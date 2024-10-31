@@ -6,6 +6,12 @@ export default $config({
          name: process.env.APP_NAME,
          removal: 'remove',
          home: 'aws',
+         providers: {
+            aws: {
+               profile: 'hexcode',
+               // profile: input.stage === 'production' ? 'hexcode-production' : 'hexcode-development'
+            },
+         },
       }
    },
    async run() {
