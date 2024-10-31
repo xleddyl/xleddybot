@@ -18,6 +18,8 @@ export default $config({
       const api = new sst.aws.ApiGatewayV2('xleddylbot_api')
       api.route('POST /', {
          handler: 'functions/index.echo',
+         architecture: 'arm64',
+         timeout: '10 seconds',
          environment: {
             BOT_TOKEN: process.env.BOT_TOKEN,
          },

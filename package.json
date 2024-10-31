@@ -7,8 +7,8 @@
    "license": "MIT",
    "scripts": {
       "dev": "npx sst dev --stage development",
-      "delete": "npx sst remove --stage",
       "deploy": "npx sst deploy --stage production",
+      "delete": "npx sst remove --stage",
       "sso": "aws sso login --sso-session xleddyl",
       "sso-test": "aws sts get-caller-identity --profile hexcode",
       "sso-config": "aws configure sso"
